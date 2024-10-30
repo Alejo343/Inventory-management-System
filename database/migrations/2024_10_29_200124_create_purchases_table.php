@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\PurchaseStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,6 +14,13 @@ return new class extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
+            $table->string('date');
+            $table->string('purchase_no');
+            $table->tinyInteger('status')->default(PurchaseStatus::PENDING->value)->comment('0=Pending, 1=Approved');
+            $table->integer('total_amount');
+            $table->foreignIdFor(\App\Models\Supplier::class)->constrained();
+            $table->foreignIdFor(\App\Models\User::class, 'created_by');
+            $table->foreignIdFor(\App\Models\User::class, 'updated_by')->nullable();
             $table->timestamps();
         });
     }
