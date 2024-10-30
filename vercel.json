@@ -4,16 +4,6 @@
     "functions": {
         "api/index.php": { "runtime": "vercel-php@0.7.3" }
     },
-    "builds": [
-        {
-            "src": "api/index.php",
-            "use": "@vercel/php"
-        },
-        {
-            "src": "resources/css/app-dark.css",
-            "use": "@vercel/static"
-        }
-    ],
     "routes": [
         {
             "src": "/build/(.*)",
