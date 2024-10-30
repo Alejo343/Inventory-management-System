@@ -17,4 +17,8 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    build: {
+        minify: "esbuild",
+        cssCodeSplit: true,
+    },
 });
