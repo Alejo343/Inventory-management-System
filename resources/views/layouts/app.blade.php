@@ -16,7 +16,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ Vite::asset('resources/css/app-dark.css') }}">
     <link rel="stylesheet" href="{{ Vite::asset('resources/css/iconly.css') }}">
-
+    @livewireStyles
 </head>
 
 <body>
@@ -35,6 +35,7 @@
 
 
         @include('layouts.footer')
+        @livewireScripts
     </div>
 
     <script src="{{ Vite::asset('resources/js/dark.js') }}"></script>
