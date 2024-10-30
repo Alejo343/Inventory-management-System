@@ -13,7 +13,7 @@ class UnitSeeder extends Seeder
      */
     public function run(): void
     {
-        $units = collect([
+        $units = [
             [
                 'name' => 'Meters',
                 'slug' => 'meters',
@@ -29,10 +29,8 @@ class UnitSeeder extends Seeder
                 'slug' => 'piece',
                 'short_code' => 'pc'
             ]
-        ]);
+        ];
 
-        $units->each(function ($unit) {
-            Unit::insert($unit);
-        });
+        Unit::insert($units);
     }
 }
