@@ -9047,7 +9047,7 @@ html[data-bs-theme="dark"] .form-check.form-check-dark .form-check-input {
     background-color: #131313;
     border-color: #131313;
 }
-html[data-bs-theme="dark"] .dataTable-input {
+html[data-bs-theme="dark"] .datatable-input {
     min-height: calc(1.5em + 0.934rem + 2px);
     padding: 0.467rem 0.6rem !important;
     font-size: 0.9025rem;
@@ -9063,7 +9063,7 @@ html[data-bs-theme="dark"] .dataTable-input {
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-html[data-bs-theme="dark"] .dataTable-input:focus {
+html[data-bs-theme="dark"] .datatable-input:focus {
     color: #555252;
     background-color: #1b1b29;
     border-color: #4b4b68;
@@ -10340,12 +10340,12 @@ html[data-bs-theme="dark"] .pricing .card {
 html[data-bs-theme="dark"] .note-editing-area .note-editable {
     background-color: #fff;
 }
-html[data-bs-theme="dark"] .dataTable-input {
+html[data-bs-theme="dark"] .datatable-input {
     background-color: #1b1b29;
     border-color: #35354f;
     transition: all 0.2s ease-in-out;
 }
-html[data-bs-theme="dark"] .dataTable-input:focus {
+html[data-bs-theme="dark"] .datatable-input:focus {
     background-color: #1b1b29;
     border-color: #4b4b68;
     color: #c2c2d9;

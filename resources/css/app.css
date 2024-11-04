@@ -1,6 +1,9 @@
-/* resources/css/app.css */
-@import "bootstrap/dist/css/bootstrap.min.css";
-
+@charset "UTF-8";
+/* 
+ Bootstrap  v5.3.3 (https://getbootstrap.com/)
+ Copyright 2011-2024 The Bootstrap Authors
+ Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+  */
 .ps {
     overflow: hidden !important;
     overflow-anchor: none;
@@ -88,6 +91,8 @@
         overflow: auto !important;
     }
 }
+
+/* --------------------BOOTSTRAP----------------- */
 :root,
 [data-bs-theme="light"] {
     --bs-blue: #435ebe;
@@ -11492,6 +11497,8 @@ fieldset:disabled .btn {
         display: none !important;
     }
 } /*!
+    
+ * SEGUNDO SEGMENTO
  * Bootstrap Icons v1.11.3 (https://icons.getbootstrap.com/)
  * Copyright 2019-2024 The Bootstrap Authors
  * Licensed under MIT (https://github.com/twbs/icons/blob/main/LICENSE)
@@ -17665,6 +17672,8 @@ fieldset:disabled .btn {
 .bi-vignette:before {
     content: "賈";
 }
+
+/* TERCER SEGMENTO */
 body .bi:before,
 [class^="bi-"]:before,
 [class*=" bi-"]:before {
@@ -19170,6 +19179,7 @@ body .bi:before,
 .page-item:last-child {
     margin-left: 0.4rem;
 }
+/* tablass */
 .table td,
 .dataTable-table td,
 .table thead th,

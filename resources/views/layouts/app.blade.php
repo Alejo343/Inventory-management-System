@@ -12,10 +12,15 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
-    <!-- Styles -->
+    <!-- Styles and js -->
+    @vite('resources/css/table.css')
+    @vite('resources/css/simple-datatable.css')
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="stylesheet" href="{{ Vite::asset('resources/css/app-dark.css') }}">
-    <link rel="stylesheet" href="{{ Vite::asset('resources/css/iconly.css') }}">
+
+    @vite('resources/css/app-dark.css')
+    @vite('resources/css/iconly.css')
+
     @livewireStyles
 </head>
 
@@ -38,8 +43,11 @@
         @livewireScripts
     </div>
 
-    <script src="{{ Vite::asset('resources/js/dark.js') }}"></script>
-    <script src="{{ Vite::asset('resources/js/sidebar.js') }}"></script>
+    @vite('resources/js/dark.js')
+    @vite('resources/js/sidebar.js')
+
+    @vite('resources/js/simple-datatable.js')
+    @vite('resources/js/table.js')
 </body>
 
 </html>

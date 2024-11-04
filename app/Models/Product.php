@@ -22,8 +22,8 @@ class Product extends Model
         'quantity_alert',
         'buying_price',
         'selling_price',
-        'tax',
-        'tax_type',
+        'iva',
+        'iva_type',
         'notes',
         'product_image',
         'category_id',
@@ -35,7 +35,7 @@ class Product extends Model
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-        'tax_type' => TaxType::class
+        'iva_type' => TaxType::class
     ];
 
     public function getRouteKeyName(): string
