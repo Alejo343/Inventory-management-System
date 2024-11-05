@@ -55,38 +55,38 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item {{ Route::is('products.index') ? 'active' : '' }}">
+                <li class="sidebar-item {{ Route::is('products.*') ? 'active' : '' }}">
                     <a href="{{ route('products.index') }}" class='sidebar-link'>
                         <i class="bi bi-box2-fill"></i>
                         <span>Productos</span>
                     </a>
                 </li>
 
-                <li class="sidebar-item  has-sub">
+                <li class="sidebar-item has-sub {{ Route::is('categories.*') ? 'active' : '' }}">
                     <a href="#" class='sidebar-link'>
-                        <i class="bi bi-three-dots"></i>
-                        <span>Multi-level Menu</span>
+                        <span>Opciones</span>
                     </a>
-                    <ul class="submenu ">
-                        <li class="submenu-item  has-sub">
-                            <a href="#" class="submenu-link">First Level</a>
-                            <ul class="submenu submenu-level-2 ">
-                                <li class="submenu-item ">
-                                    <a href="ui-multi-level-menu.html" class="submenu-link">Second Level</a>
-                                </li>
-                            </ul>
+                    <ul class="submenu">
+                        <li class="submenu-item {{ Route::is('categories.*') ? 'active' : '' }}">
+                            <a href="{{ route('categories.index') }}" class="submenu-link">
+                                <i class="bi bi-grid-3x2-gap-fill me-2"></i>
+                                Categorias
+                            </a>
                         </li>
                         <li class="submenu-item  has-sub">
                             <a href="#" class="submenu-link">Another Menu</a>
                             <ul class="submenu submenu-level-2 ">
                                 <li class="submenu-item ">
-                                    <a href="ui-multi-level-menu.html" class="submenu-link">Second Level
-                                        Menu</a>
+                                    <a href="#" class="submenu-link">
+                                        Second Level Menu
+                                    </a>
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </li>
+
+
 
                 <li class="sidebar-title">Pages</li>
 

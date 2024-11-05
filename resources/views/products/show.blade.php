@@ -40,7 +40,8 @@
                                             <tr>
                                                 <td class="fw-bold fs-6">Categoria</td>
                                                 <td class="fs-6">
-                                                    <a href="#" class="badge text-bg-info">
+                                                    <a href="{{ route('categories.show', $product->category->name) }}"
+                                                        class="badge text-bg-info">
                                                         {{ $product->category->name }}
                                                     </a>
                                                 </td>

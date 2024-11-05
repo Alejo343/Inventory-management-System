@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\Product;
+
+use function Ramsey\Uuid\v1;
 
 class CategoryController extends Controller
 {
@@ -13,7 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -21,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
@@ -29,7 +33,15 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        try {
+            Category::create($request->all());
+            return redirect()->route('categories.index')
+                ->with('success', 'Categoría creada correctamente');
+        } catch (\Exception $e) {
+            $errorMessage = 'A ocurrido un error al crear la categoría: ' . $e->getMessage();
+            return redirect()->route('categories.create')
+                ->with('error', $errorMessage);
+        }
     }
 
     /**
@@ -37,7 +49,9 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        // productos de esta categoria
+        $products = Product::where('category_id', $category->id)->get();
+        return view('categories.show', compact('category', 'products'));
     }
 
     /**
@@ -45,7 +59,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -53,7 +67,15 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        try {
+            $category->update($request->all());
+            return redirect()->route('categories.index')
+                ->with('success', 'Categoria actualizada correctamente');
+        } catch (\Exception $e) {
+            $errorMessage = 'A ocurrido un error al actualizar la categoria: ' . $e->getMessage();
+            return redirect()->route('categories.edit', $category)
+                ->with('error', $errorMessage);
+        }
     }
 
     /**
@@ -61,6 +83,14 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        try {
+            $category->delete();
+            return redirect()->route('categories.index')
+                ->with('success', 'Categoría eliminada correctamente');
+        } catch (\Exception $e) {
+            $errorMessage = 'A ocurrido un error al eliminar la categoría: ' . $e->getMessage();
+            return redirect()->route('categories.index')
+                ->with('error', $errorMessage);
+        }
     }
 }
