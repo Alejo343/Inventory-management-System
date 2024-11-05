@@ -68,17 +68,57 @@
                                         {{ $product->quantity }}
                                     </td>
                                     <td class="py-3 align-middle text-center">
-                                        <a href="#" class="btn icon btn-primary mx-2">
+                                        <a href="{{ route('products.show', $product) }}" class="btn icon btn-primary mx-2">
                                             <i class="bi bi-eye"></i>
                                         </a>
-                                        <a href="#" class="btn icon btn-warning mx-2">
+                                        <a href="{{ route('products.edit', $product) }}" class="btn icon btn-warning mx-2">
                                             <i class="bi bi-pencil"></i>
                                         </a>
-                                        <a href="#" class="btn icon btn-danger mx-2">
-                                            <i class="bi bi-trash"></i>
+                                        <a class="btn icon btn-danger mx-2" data-bs-toggle="modal"
+                                            data-bs-target="#danger-{{ $product->id }}">
+                                            <i class="bi
+                                            bi-trash"></i>
                                         </a>
                                     </td>
                                 </tr>
+                                <!--Danger Modal -->
+                                <div class="modal fade text-left" id="danger-{{ $product->id }}" tabindex="-1"
+                                    role="dialog" aria-labelledby="myModalLabel120-{{ $product->id }}" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-danger">
+                                                <h5 class="modal-title white" id="myModalLabel120">
+                                                    Borrar producto
+                                                </h5>
+                                                <button type="button" class="close" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <i data-feather="x"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Desea borrar el producto {{ $product->name }} con el codigo
+                                                {{ $product->code }} ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light-secondary"
+                                                    data-bs-dismiss="modal">
+                                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                                    <span class="d-none d-sm-block">Cancelar</span>
+                                                </button>
+                                                <!-- Formulario para hacer el DELETE -->
+                                                <form action="{{ route('products.destroy', $product) }}" method="POST"
+                                                    class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger ms-1">
+                                                        <i class="bx bx-check d-block d-sm-none"></i>
+                                                        <span class="d-none d-sm-block">Aceptar</span>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             @empty
                                 <tr>
                                     <td class="align-middle text-center" colspan="7">
@@ -87,6 +127,7 @@
                                 </tr>
                             @endforelse
                         </table>
+
 
                     </div>
                 </div>

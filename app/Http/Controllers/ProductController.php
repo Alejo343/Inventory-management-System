@@ -53,7 +53,11 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        $categories = Category::all();
+        $units = Unit::all();
+        $ivaTypes = TaxType::cases();
+
+        return view('products.show', compact('product', 'categories', 'units', 'ivaTypes'));
     }
 
     /**
@@ -72,7 +76,15 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        try {
+            $product->update($request->all());
+            return redirect()->route('products.index')->with('success', 'Producto actualizado exitosamente.');
+        } catch (\Exception $e) {
+            $errorMessage = 'Hubo un error al actualizar el producto: ' . $e->getMessage();
+            return redirect()->route('products.edit', $product)->with('error', $errorMessage);
+        }
+
+        return redirect()->route('products.index')->with('success', 'Producto actualizado exitosamente.');
     }
 
     /**
@@ -80,6 +92,14 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        try {
+            $product->delete();
+            return redirect()->route('products.index')->with('success', 'Producto eliminado exitosamente.');
+        } catch (\Exception $e) {
+            $errorMessage = 'Hubo un error al eliminar el producto: ' . $e->getMessage();
+            return redirect()->route('products.index')->with('error', $errorMessage);
+        }
+
+        return redirect()->route('products.index')->with('success', 'Producto eliminado exitosamente.');
     }
 }
