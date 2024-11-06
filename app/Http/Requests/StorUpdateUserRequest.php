@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UpdateUnitRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,16 +22,11 @@ class UpdateUnitRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => [
-                'required',
-                Rule::unique('units')->ignore($this->unit)
-            ],
-            'slug' => [
-                'required',
-                'alpha_dash',
-                Rule::unique('units')->ignore($this->unit)
-            ],
-            'short_code' => 'required'
+            'name' => 'required|max:50',
+            'email' => 'required|email|max:50|unique:users,email',
+            'username' => 'required|min:4|max:25|alpha_dash:ascii|unique:users,username',
+            'password' => 'required_with:password_confirmation|min:6',
+            'password_confirmation' => 'same:password|min:6',
         ];
     }
 }

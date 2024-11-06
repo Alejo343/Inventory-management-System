@@ -25,9 +25,14 @@ class Unit extends Model
         'updated_at' => 'datetime',
     ];
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     public function products(): HasMany
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class, 'unit_id', 'id');
     }
 
     public function scopeSearch($query, $value): void
@@ -35,10 +40,5 @@ class Unit extends Model
         $query->where('name', 'like', "%{$value}%")
             ->orWhere('slug', 'like', "%{$value}%")
             ->orWhere('short_code', 'like', "%{$value}%");
-    }
-
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
     }
 }

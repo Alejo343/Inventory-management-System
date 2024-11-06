@@ -62,7 +62,7 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item has-sub {{ Route::is('categories.*') ? 'active' : '' }}">
+                <li class="sidebar-item has-sub {{ Route::is('categories.*', 'units.*', 'user.*') ? 'active' : '' }}">
                     <a href="#" class='sidebar-link'>
                         <span>Opciones</span>
                     </a>
@@ -73,15 +73,17 @@
                                 Categorias
                             </a>
                         </li>
-                        <li class="submenu-item  has-sub">
-                            <a href="#" class="submenu-link">Another Menu</a>
-                            <ul class="submenu submenu-level-2 ">
-                                <li class="submenu-item ">
-                                    <a href="#" class="submenu-link">
-                                        Second Level Menu
-                                    </a>
-                                </li>
-                            </ul>
+                        <li class="submenu-item {{ Route::is('units.*') ? 'active' : '' }}">
+                            <a href="{{ route('units.index') }}" class="submenu-link">
+                                <i class="bi bi-rulers me-2"></i>
+                                Tipos unidades
+                            </a>
+                        </li>
+                        <li class="submenu-item {{ Route::is('user.*') ? 'active' : '' }}">
+                            <a href="{{ route('user.index') }}" class="submenu-link">
+                                <i class="bi bi-people-fill me-2"></i>
+                                Usuarios
+                            </a>
                         </li>
                     </ul>
                 </li>

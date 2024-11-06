@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreUnitRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class StoreUnitRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,16 @@ class StoreUnitRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => [
+                'required',
+                Rule::unique('units')->ignore($this->unit)
+            ],
+            'slug' => [
+                'required',
+                'alpha_dash',
+                Rule::unique('units')->ignore($this->unit)
+            ],
+            'short_code' => 'required'
         ];
     }
 }

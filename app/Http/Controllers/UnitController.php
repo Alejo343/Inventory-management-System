@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Unit;
 use App\Http\Requests\StoreUnitRequest;
 use App\Http\Requests\UpdateUnitRequest;
+use App\Models\Product;
 
 class UnitController extends Controller
 {
@@ -13,7 +14,8 @@ class UnitController extends Controller
      */
     public function index()
     {
-        //
+        $units = Unit::all();
+        return view('units.index', compact('units'));
     }
 
     /**
@@ -21,7 +23,7 @@ class UnitController extends Controller
      */
     public function create()
     {
-        //
+        return view('units.create');
     }
 
     /**
@@ -29,7 +31,15 @@ class UnitController extends Controller
      */
     public function store(StoreUnitRequest $request)
     {
-        //
+        try {
+            Unit::create($request->all());
+            return redirect()->route('units.index')
+                ->with('success', 'Tipo de unidad creada correctamente');
+        } catch (\Exception $e) {
+            $errorMessage = 'A ocurrido un error al crear la unidad: ' . $e->getMessage();
+            return redirect()->route('units.create')
+                ->with('error', $errorMessage);
+        }
     }
 
     /**
@@ -37,7 +47,8 @@ class UnitController extends Controller
      */
     public function show(Unit $unit)
     {
-        //
+        $products = Product::where('unit_id', $unit->id)->get();
+        return view('units.show', compact('unit', 'products'));
     }
 
     /**
@@ -45,7 +56,7 @@ class UnitController extends Controller
      */
     public function edit(Unit $unit)
     {
-        //
+        return view('units.edit', compact('unit'));
     }
 
     /**
@@ -53,7 +64,15 @@ class UnitController extends Controller
      */
     public function update(UpdateUnitRequest $request, Unit $unit)
     {
-        //
+        try {
+            $unit->update($request->all());
+            return redirect()->route('units.index')
+                ->with('success', 'Tipo de unidad actualizada correctamente');
+        } catch (\Exception $e) {
+            $errorMessage = 'A ocurrido un error al actualizar la unidad: ' . $e->getMessage();
+            return redirect()->route('units.edit', $unit->id)
+                ->with('error', $errorMessage);
+        }
     }
 
     /**
@@ -61,6 +80,18 @@ class UnitController extends Controller
      */
     public function destroy(Unit $unit)
     {
-        //
+        try {
+            if (Product::where('unit_id', $unit->id)) {
+                return redirect()->route('units.index', $unit->id)
+                    ->with('error', 'No se puede eliminar una unidad que se está utilizando en productos.');
+            }
+            $unit->delete();
+            return redirect()->route('units.index')
+                ->with('success', 'Tipo de unidad eliminada correctamente');
+        } catch (\Exception $e) {
+            $errorMessage = 'A ocurrido un error al eliminar la unidad: ' . $e->getMessage();
+            return redirect()->route('units.index', $unit->id)
+                ->with('error', $errorMessage);
+        }
     }
 }
