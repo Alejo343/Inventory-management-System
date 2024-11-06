@@ -88,7 +88,31 @@
                     </ul>
                 </li>
 
-
+                <li class="sidebar-item has-sub {{ Route::is('suppliers.*') ? 'active' : '' }}">
+                    <a href="#" class='sidebar-link'>
+                        <span>Paginas</span>
+                    </a>
+                    <ul class="submenu">
+                        <li class="submenu-item {{ Route::is('suppliers.*') ? 'active' : '' }}">
+                            <a href="{{ route('suppliers.index') }}" class="submenu-link">
+                                <i class="bi bi-send-arrow-down-fill me-2"></i>
+                                Proovedores
+                            </a>
+                        </li>
+                        {{-- <li class="submenu-item {{ Route::is('units.*') ? 'active' : '' }}">
+                            <a href="{{ route('units.index') }}" class="submenu-link">
+                                <i class="bi bi-rulers me-2"></i>
+                                Tipos unidades
+                            </a>
+                        </li>
+                        <li class="submenu-item {{ Route::is('user.*') ? 'active' : '' }}">
+                            <a href="{{ route('user.index') }}" class="submenu-link">
+                                <i class="bi bi-people-fill me-2"></i>
+                                Usuarios
+                            </a>
+                        </li> --}}
+                    </ul>
+                </li>
 
                 <li class="sidebar-title">Pages</li>
 
