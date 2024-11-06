@@ -34,7 +34,7 @@
                         <h5 class="card-title m-0">
                             Usuarios
                         </h5>
-                        <a href="{{ route('user.index') }}" class="btn icon btn-primary">
+                        <a href="{{ route('user.create') }}" class="btn icon btn-primary">
                             <i class="bi bi-file-plus-fill"></i>
                             Agregar
                         </a>
@@ -58,12 +58,10 @@
                                             {{ $user->email }}
                                         </td>
                                         <td class="py-3 align-middle text-end">
-                                            <a href="{{ route('categories.show', $user) }}"
-                                                class="btn icon btn-primary mx-2">
+                                            <a href="{{ route('user.show', $user) }}" class="btn icon btn-primary mx-2">
                                                 <i class="bi bi-eye"></i>
                                             </a>
-                                            <a href="{{ route('categories.edit', $user) }}"
-                                                class="btn icon btn-warning mx-2">
+                                            <a href="{{ route('user.edit', $user) }}" class="btn icon btn-warning mx-2">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
                                             <a class="btn icon btn-danger mx-2" data-bs-toggle="modal"
@@ -89,10 +87,8 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Desea borrar el usuario: {{ $user->name }} de correo
-                                                    {{ $user->emial }}?
-                                                    <span>Los productos asociados a esta categoria quedaran sin una
-                                                        categoria.</span>
+                                                    Desea borrar el usuario {{ $user->name }} de correo
+                                                    {{ $user->email }}?
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-light-secondary"

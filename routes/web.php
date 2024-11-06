@@ -28,3 +28,4 @@ Route::resource('products', ProductController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('units', UnitController::class);
 Route::resource('user', UserController::class);
+Route::put('user/{user}/updatePassword', [UserController::class, 'updatePassword'])->name('user.updatePassword');
