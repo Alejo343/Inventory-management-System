@@ -81,31 +81,31 @@
                         </li>
                         <li class="submenu-item {{ Route::is('user.*') ? 'active' : '' }}">
                             <a href="{{ route('user.index') }}" class="submenu-link">
-                                <i class="bi bi-people-fill me-2"></i>
+                                <i class="bi bi-person-fill-gear"></i>
                                 Usuarios
                             </a>
                         </li>
                     </ul>
                 </li>
 
-                <li class="sidebar-item has-sub {{ Route::is('suppliers.*') ? 'active' : '' }}">
+                <li class="sidebar-item has-sub {{ Route::is('suppliers.*', 'customers.*') ? 'active' : '' }}">
                     <a href="#" class='sidebar-link'>
                         <span>Paginas</span>
                     </a>
                     <ul class="submenu">
                         <li class="submenu-item {{ Route::is('suppliers.*') ? 'active' : '' }}">
                             <a href="{{ route('suppliers.index') }}" class="submenu-link">
-                                <i class="bi bi-send-arrow-down-fill me-2"></i>
+                                <i class="bi bi-truck"></i>
                                 Proovedores
                             </a>
                         </li>
-                        {{-- <li class="submenu-item {{ Route::is('units.*') ? 'active' : '' }}">
-                            <a href="{{ route('units.index') }}" class="submenu-link">
-                                <i class="bi bi-rulers me-2"></i>
-                                Tipos unidades
+                        <li class="submenu-item {{ Route::is('customers.*') ? 'active' : '' }}">
+                            <a href="{{ route('customers.index') }}" class="submenu-link">
+                                <i class="bi bi-people-fill"></i>
+                                Clientes
                             </a>
                         </li>
-                        <li class="submenu-item {{ Route::is('user.*') ? 'active' : '' }}">
+                        {{-- <li class="submenu-item {{ Route::is('user.*') ? 'active' : '' }}">
                             <a href="{{ route('user.index') }}" class="submenu-link">
                                 <i class="bi bi-people-fill me-2"></i>
                                 Usuarios

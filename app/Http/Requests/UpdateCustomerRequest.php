@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateCustomerRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateCustomerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,24 @@ class UpdateCustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'photo' => 'image|file|max:1024',
+            'name' => 'required|string|max:50',
+            'email' => [
+                'required',
+                'email',
+                'max:50',
+                Rule::unique('customers')->ignore($this->customer)
+            ],
+            'phone' => [
+                'required',
+                'string',
+                'max:25',
+                Rule::unique('customers')->ignore($this->customer)
+            ],
+            'account_holder' => 'max:50',
+            'account_number' => 'max:25',
+            'bank_name' => 'max:25',
+            'address' => 'required|string|max:100',
         ];
     }
 }

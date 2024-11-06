@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitController;
@@ -31,3 +32,4 @@ Route::resource('units', UnitController::class);
 Route::resource('user', UserController::class);
 Route::put('user/{user}/updatePassword', [UserController::class, 'updatePassword'])->name('user.updatePassword');
 Route::resource('suppliers', SupplierController::class);
+Route::resource('customers', CustomerController::class);
