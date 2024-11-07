@@ -62,6 +62,13 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item {{ Route::is('purchases.*') ? 'active' : '' }}">
+                    <a href="{{ route('purchases.index') }}" class='sidebar-link'>
+                        <i class="bi bi-building-fill-down"></i>
+                        <span>Compras</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-item has-sub {{ Route::is('categories.*', 'units.*', 'user.*') ? 'active' : '' }}">
                     <a href="#" class='sidebar-link'>
                         <span>Opciones</span>

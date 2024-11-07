@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
@@ -33,3 +34,4 @@ Route::resource('user', UserController::class);
 Route::put('user/{user}/updatePassword', [UserController::class, 'updatePassword'])->name('user.updatePassword');
 Route::resource('suppliers', SupplierController::class);
 Route::resource('customers', CustomerController::class);
+Route::resource('purchases', PurchaseController::class);
