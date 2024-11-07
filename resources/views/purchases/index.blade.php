@@ -78,13 +78,20 @@
                                                 class="btn icon btn-primary mx-2">
                                                 <i class="bi bi-eye"></i>
                                             </a>
+                                            @if ($purchase->status->value == 0)
+                                                <a class="btn icon btn-success mx-2" data-bs-toggle="modal"
+                                                    data-bs-target="#warning-{{ $purchase->id }}">
+                                                    <i class="bi bi-check-lg"></i>
+                                                </a>
+                                            @endif
                                             <a class="btn icon btn-danger mx-2" data-bs-toggle="modal"
                                                 data-bs-target="#danger-{{ $purchase->id }}">
                                                 <i class="bi bi-trash"></i>
                                             </a>
                                         </td>
                                     </tr>
-                                    <!--Danger Modal -->
+
+                                    <!-- Modal eliminar -->
                                     <div class="modal fade text-left" id="danger-{{ $purchase->id }}" tabindex="-1"
                                         role="dialog" aria-labelledby="myModalLabel120-{{ $purchase->id }}"
                                         aria-hidden="true">
@@ -101,7 +108,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Desea borrar la compra {{ $purchase->name }}?
+                                                    Desea borrar la compra {{ $purchase->purchase_no }}?
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-light-secondary"
@@ -115,6 +122,44 @@
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger ms-1">
+                                                            <i class="bx bx-check d-block d-sm-none"></i>
+                                                            <span class="d-none d-sm-block">Aceptar</span>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal activar -->
+                                    <div class="modal fade text-left" id="warning-{{ $purchase->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="myModalLabel120-{{ $purchase->id }}"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                            role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-warning">
+                                                    <h5 class="modal-title white" id="myModalLabel120">
+                                                        Aprovar compra
+                                                    </h5>
+                                                    <button type="button" class="close" data-bs-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <i data-feather="x"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Desea aprovar la compra {{ $purchase->purchase_no }}?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light-secondary"
+                                                        data-bs-dismiss="modal">
+                                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                                        <span class="d-none d-sm-block">Cancelar</span>
+                                                    </button>
+                                                    <form action="{{ route('purchases.update', $purchase) }}"
+                                                        method="POST" class="d-inline">
+                                                        @csrf
+                                                        @method('put')
+                                                        <button type="submit" class="btn btn-success ms-1">
                                                             <i class="bx bx-check d-block d-sm-none"></i>
                                                             <span class="d-none d-sm-block">Aceptar</span>
                                                         </button>

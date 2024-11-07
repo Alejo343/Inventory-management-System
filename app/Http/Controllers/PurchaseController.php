@@ -6,6 +6,7 @@ use App\Enums\PurchaseStatus;
 use App\Models\Purchase;
 use App\Http\Requests\StorePurchaseRequest;
 use App\Http\Requests\UpdatePurchaseRequest;
+use App\Models\Product;
 use App\Models\PurchaseDetail;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
@@ -61,10 +62,26 @@ class PurchaseController extends Controller
             ]);
 
             $this->storePurchaseDetail($newPurchase, $request);
+            $this->updateProductQuantity($request);
 
             return redirect()->route('purchases.index')->with('success', 'Compra creada exitosamente.');
         } catch (\Exception $e) {
             $errorMessage = 'Hubo un error al crear la compra: ' . $e->getMessage();
+            return redirect()->route('purchases.create')->with('error', $errorMessage);
+        }
+    }
+
+    // aumentar cantidad del producto en la tabla de products
+    public function updateProductQuantity($request)
+    {
+        try {
+            foreach ($request->products as $product) {
+                $productModel = Product::where('id', $product['product_id'])->first();
+                $productModel->quantity += $product['quantity'];
+                $productModel->save();
+            }
+        } catch (\Throwable $e) {
+            $errorMessage = 'Hubo un error al actualizar la cantidad del producto: ' . $e->getMessage();
             return redirect()->route('purchases.create')->with('error', $errorMessage);
         }
     }
@@ -100,26 +117,16 @@ class PurchaseController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Purchase $purchase)
-    {
-        $supplier = Supplier::where('id', $purchase->supplier_id)->first();
-        $status = PurchaseStatus::cases();
-        $purchaseDetails = PurchaseDetail::where('purchase_id', $purchase->id)->get();
-
-        return view('purchases.edit', compact('purchase', 'supplier', 'purchaseDetails'));
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(UpdatePurchaseRequest $request, Purchase $purchase)
     {
         try {
-            $purchase->update($request->all());
+            //cambiar el estatus de purchase
+            $purchase->status = PurchaseStatus::APPROVED;
+            $purchase->save();
 
-            return redirect()->route('purchases.index')->with('success', 'Compra actualizada exitosamente.');
+            return redirect()->route('purchases.index')->with('success', 'Compra' . $purchase->purchase_no . 'aprovada');
         } catch (\Exception $e) {
             $errorMessage = 'Hubo un error al actualizar la compra: ' . $e->getMessage();
             return redirect()->route('purchases.index')->with('error', $errorMessage);
