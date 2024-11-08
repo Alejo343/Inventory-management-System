@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\OrderStatus;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreOrderRequest extends FormRequest
@@ -11,7 +13,7 @@ class StoreOrderRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,29 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'customer_id' => 'required',
+            'order_date' => 'required|string',
+            'total_products' => 'required|numeric',
+            'sub_total' => 'required|numeric',
+            'iva' => 'required|numeric',
+            'total' => 'required|numeric',
+            'payment_type' => 'required|string',
+            'pay' => 'required|numeric',
+            'due' => 'required|numeric',
         ];
+    }
+
+
+    public function prepareForValidation(): void
+    {
+        $this->merge([
+            'invoice_no' => IdGenerator::generate([
+                'table' => 'orders',
+                'field' => 'invoice_no',
+                'length' => 10,
+                'prefix' => 'INV-'
+            ]),
+            'order_status'     => OrderStatus::PENDING->value,
+        ]);
     }
 }

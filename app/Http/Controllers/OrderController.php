@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\OrderStatus;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Models\Customer;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -13,7 +16,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+        $status = OrderStatus::cases();
+        $customers = Customer::all();
+        return view('orders.index', compact('orders', 'status'));
     }
 
     /**
@@ -21,15 +27,17 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $status = OrderStatus::cases();
+        $customers = Customer::all();
+        return view('orders.create', compact('customers', 'status'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreOrderRequest $request)
+    public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
