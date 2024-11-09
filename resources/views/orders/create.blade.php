@@ -28,16 +28,16 @@
                                     <div class="row">
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
-                                                <label for="date">Fecha</label>
-                                                <input type="date" id="date" class="form-control"
-                                                    placeholder="fecha" name="date" value="{{ date('Y-m-d') }}">
+                                                <label for="order_date">Fecha</label>
+                                                <input type="date" id="order_date" class="form-control"
+                                                    placeholder="fecha" name="order_date" value="{{ date('Y-m-d') }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="slug">Seleccione el cliente</label>
                                                 <fieldset class="form-group">
-                                                    <select class="form-select" id="supplier" name="supplier_id" required>
+                                                    <select class="form-select" id="customer" name="customer_id" required>
                                                         <option value="">Seleccina un cliente</option>
                                                         @foreach ($customers as $customer)
                                                             <option value="{{ $customer->id }}"
@@ -51,6 +51,33 @@
                                         </div>
 
                                         <livewire:order-table />
+
+
+                                        {{-- <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="slug">Medio de pago: </label>
+                                                <fieldset class="form-group">
+                                                    <select class="form-select" id="payment_type" name="payment_type"
+                                                        required>
+                                                        <option value="">Seleccina un medio de pago</option>
+                                                        @foreach ($paymentTypes as $paymentType)
+                                                            <option value="{{ $paymentType->value }}"
+                                                                {{ isset($order) && $order->payment_type->value == $paymentType->value ? 'selected' : '' }}>
+                                                                {{ $paymentType->label() }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </fieldset>
+                                            </div>
+                                        </div> --}}
+
+                                        {{-- <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="pay">Pago: </label>
+                                                <input type="number" min="1" id="pay" class="form-control"
+                                                    placeholder="Valor pagado" name="pay">
+                                            </div>
+                                        </div> --}}
 
                                         <div class="col-12 d-flex justify-content-end">
                                             <button type="submit" class="btn btn-primary me-1 mb-1">Crear</button>
@@ -89,7 +116,6 @@
                 subtotal = event[0].subtotal;
                 iva = event[0].iva;
                 total = event[0].total;
-                // console.log('Subtotal:', subtotal);
             });
         });
 
@@ -110,12 +136,8 @@
             createHiddenInput(formulario, `sub_total`, subtotal);
             createHiddenInput(formulario, `total`, total);
             createHiddenInput(formulario, `iva`, iva);
-            // createHiddenInput(formulario, `products[${index}][payment_type]`, product.payment_type);
-            // createHiddenInput(formulario, `products[${index}][pay]`, product.pay);
-            // createHiddenInput(formulario, `products[${index}][due]`, product.due);
 
             products.forEach((product, index) => {
-
                 createHiddenInput(formulario, `products[${index}][product_id]`, product.product_id);
                 createHiddenInput(formulario, `products[${index}][quantity]`, product.quantity);
                 createHiddenInput(formulario, `products[${index}][selling_price]`, product.selling_price);

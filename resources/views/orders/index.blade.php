@@ -46,7 +46,6 @@
                                     <th class="text-start">Compra No.</th>
                                     <th class="text-center align-middle">Cliente</th>
                                     <th class="text-center align-middle">Fecha</th>
-                                    <th class="text-center align-middle">Tipo de pago</th>
                                     <th class="text-center align-middle">Total</th>
                                     <th class="text-center align-middle">Estado</th>
                                     <th class="text-center align-middle">Acciones</th>
@@ -62,45 +61,39 @@
                                             {{ $order->customer->name }}
                                         </td>
                                         <td class="py-3 text-start">
-                                            {{ $order->date }}
+                                            {{ $order->order_date }}
                                         </td>
                                         <td class="py-3 align-middle text-center">
-                                            {{ $order->payment_type }}
+                                            ${{ $order->total }}
                                         </td>
                                         <td class="py-3 align-middle text-center">
-                                            {{ $order->total }}
-                                        </td>
-                                        <td class="py-3 align-middle text-center">
-                                            {{ $order->order_status->label() }}
-                                        </td>
-                                        <td class="py-3 align-middle text-center">
-                                            @if ($order->status->value === 0)
-                                                <span class="badge bg-warning">{{ $purchase->status->label() }}</span>
+
+                                            @if ($order->order_status->value == 0)
+                                                <span class="badge bg-warning">{{ $order->order_status->label() }}</span>
                                             @else
-                                                <span class="badge bg-success">{{ $purchase->status->label() }}</span>
+                                                <span class="badge bg-success">{{ $order->order_status->label() }}</span>
                                             @endif
                                         </td>
                                         <td class="py-3 align-middle text-end">
-                                            <a href="{{ route('orders.show', $purchase) }}"
-                                                class="btn icon btn-primary mx-2">
+                                            <a href="{{ route('orders.show', $order) }}" class="btn icon btn-primary mx-2">
                                                 <i class="bi bi-eye"></i>
                                             </a>
-                                            @if ($purchase->status->value == 0)
+                                            @if ($order->order_status->value == 0)
                                                 <a class="btn icon btn-success mx-2" data-bs-toggle="modal"
-                                                    data-bs-target="#warning-{{ $purchase->id }}">
+                                                    data-bs-target="#warning-{{ $order->id }}">
                                                     <i class="bi bi-check-lg"></i>
                                                 </a>
                                             @endif
                                             <a class="btn icon btn-danger mx-2" data-bs-toggle="modal"
-                                                data-bs-target="#danger-{{ $purchase->id }}">
+                                                data-bs-target="#danger-{{ $order->id }}">
                                                 <i class="bi bi-trash"></i>
                                             </a>
                                         </td>
                                     </tr>
 
                                     <!-- Modal eliminar -->
-                                    <div class="modal fade text-left" id="danger-{{ $purchase->id }}" tabindex="-1"
-                                        role="dialog" aria-labelledby="myModalLabel120-{{ $purchase->id }}"
+                                    <div class="modal fade text-left" id="danger-{{ $order->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="myModalLabel120-{{ $order->id }}"
                                         aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
                                             role="document">
@@ -115,7 +108,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Desea borrar la compra {{ $purchase->purchase_no }}?
+                                                    Desea borrar la compra {{ $order->invoice_no }}?
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-light-secondary"
@@ -124,8 +117,8 @@
                                                         <span class="d-none d-sm-block">Cancelar</span>
                                                     </button>
                                                     <!-- Formulario para hacer el DELETE -->
-                                                    <form action="{{ route('purchases.destroy', $purchase) }}"
-                                                        method="POST" class="d-inline">
+                                                    <form action="{{ route('orders.destroy', $order) }}" method="POST"
+                                                        class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger ms-1">
@@ -137,16 +130,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Modal activar -->
-                                    <div class="modal fade text-left" id="warning-{{ $purchase->id }}" tabindex="-1"
-                                        role="dialog" aria-labelledby="myModalLabel120-{{ $purchase->id }}"
+
+                                    <!-- Modal compra enviada -->
+                                    <div class="modal fade text-left" id="warning-{{ $order->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="myModalLabel120-{{ $order->id }}"
                                         aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
                                             role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header bg-warning">
                                                     <h5 class="modal-title white" id="myModalLabel120">
-                                                        Aprovar compra
+                                                        Envio producto
                                                     </h5>
                                                     <button type="button" class="close" data-bs-dismiss="modal"
                                                         aria-label="Close">
@@ -154,7 +148,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Desea aprovar la compra {{ $purchase->purchase_no }}?
+                                                    Desea enviar el producto {{ $order->invoice_no }}?
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-light-secondary"
@@ -162,8 +156,8 @@
                                                         <i class="bx bx-x d-block d-sm-none"></i>
                                                         <span class="d-none d-sm-block">Cancelar</span>
                                                     </button>
-                                                    <form action="{{ route('purchases.update', $purchase) }}"
-                                                        method="POST" class="d-inline">
+                                                    <form action="{{ route('orders.update', $order) }}" method="POST"
+                                                        class="d-inline">
                                                         @csrf
                                                         @method('put')
                                                         <button type="submit" class="btn btn-success ms-1">

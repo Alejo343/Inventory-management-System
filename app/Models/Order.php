@@ -25,9 +25,9 @@ class Order extends Model
         'iva',
         'total',
         'invoice_no',
-        'payment_type',
-        'pay',
-        'due',
+        // 'payment_type',
+        // 'pay',
+        // 'due',
     ];
 
     protected $casts = [
@@ -50,7 +50,6 @@ class Order extends Model
     public function scopeSearch($query, $value): void
     {
         $query->where('invoice_no', 'like', "%{$value}%")
-            ->orWhere('order_status', 'like', "%{$value}%")
-            ->orWhere('payment_type', 'like', "%{$value}%");
+            ->orWhere('order_status', 'like', "%{$value}%");
     }
 }

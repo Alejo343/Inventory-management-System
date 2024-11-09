@@ -119,14 +119,14 @@ class PurchaseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePurchaseRequest $request, Purchase $purchase)
+    public function update(Purchase $purchase)
     {
         try {
             //cambiar el estatus de purchase
             $purchase->status = PurchaseStatus::APPROVED;
             $purchase->save();
 
-            return redirect()->route('purchases.index')->with('success', 'Compra' . $purchase->purchase_no . 'aprovada');
+            return redirect()->route('purchases.index')->with('success', 'Compra' . $purchase->invoice_no . 'enviada');
         } catch (\Exception $e) {
             $errorMessage = 'Hubo un error al actualizar la compra: ' . $e->getMessage();
             return redirect()->route('purchases.index')->with('error', $errorMessage);

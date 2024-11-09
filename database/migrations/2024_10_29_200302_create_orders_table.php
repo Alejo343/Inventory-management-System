@@ -22,9 +22,9 @@ return new class extends Migration
             $table->integer('iva');
             $table->integer('total')->unsigned();
             $table->string('invoice_no');
-            $table->string('payment_type');
-            $table->integer('pay');
-            $table->integer('due');
+            // $table->string('payment_type');
+            // $table->integer('pay');
+            // $table->integer('due');
             $table->timestamps();
         });
     }

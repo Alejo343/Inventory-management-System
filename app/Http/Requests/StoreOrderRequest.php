@@ -28,11 +28,8 @@ class StoreOrderRequest extends FormRequest
             'order_date' => 'required|string',
             'total_products' => 'required|numeric',
             'sub_total' => 'required|numeric',
-            'iva' => 'required|numeric',
+            'iva' => 'numeric',
             'total' => 'required|numeric',
-            'payment_type' => 'required|string',
-            'pay' => 'required|numeric',
-            'due' => 'required|numeric',
         ];
     }
 
