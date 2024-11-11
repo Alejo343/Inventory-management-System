@@ -44,10 +44,10 @@
     </div>
 
     @vite('resources/js/dark.js')
-    @vite('resources/js/sidebar.js')
 
+    {{-- @vite('resources/js/sidebar.js')
     @vite('resources/js/simple-datatable.js')
-    @vite('resources/js/table.js')
+    @vite('resources/js/table.js') --}}
     @stack('scripts')
 </body>
 

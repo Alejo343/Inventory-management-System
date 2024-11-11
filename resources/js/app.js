@@ -1,5 +1,13 @@
 import "./bootstrap";
 import "bootstrap";
 
-import PerfectScrollbar from "perfect-scrollbar";
+// para graficos
+import "./apexcharts.min";
+import "./dashboard";
+
+//para tablas
+import "./simple-datatable";
+import "./table";
+
+//sidebar
 import "./sidebar";

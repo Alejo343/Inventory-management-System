@@ -133,7 +133,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <h4>Visitors Profile</h4>
+                            <h4>Clientes con mas pedidos</h4>
                         </div>
                         <div class="card-body">
                             <div id="chart-visitors-profile"></div>
@@ -144,8 +144,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-    @vite('resources/js/apexcharts.min.js')
-    @vite('resources/js/dashboard.js')
-@endpush
