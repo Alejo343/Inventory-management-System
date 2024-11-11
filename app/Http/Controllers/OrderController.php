@@ -132,7 +132,13 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        $customer = Customer::find($order->customer_id);
+        $status = OrderStatus::cases();
+        $products = OrderDetail::where('order_id', $order->id)->get();
+
+        dd($products);
+
+        return view('orders.show', compact('order', 'customer', 'status', 'products'));
     }
 
     /**

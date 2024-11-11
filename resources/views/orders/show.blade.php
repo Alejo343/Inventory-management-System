@@ -11,137 +11,175 @@
         </header>
 
         <div class="page-heading">
-            <h3>Resumen Compra / Recepcion de inventario</h3>
+            <h3>Crear Compra / Recepcion de inventario</h3>
         </div>
         <section id="multiple-column-form">
             <div class="row match-height">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Detalles del proovedor y de la compra</h4>
+                            <h4 class="card-title">Detalles de Compra</h4>
                         </div>
                         <div class="card-content">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="date">Nombre</label>
-                                            <input readonly type="text" id="date" class="form-control"
-                                                name="date" value="{{ $supplier->name }}">
+                                            <label for="order_date">Compra No.</label>
+                                            <input readonly type="text" id="order_date"
+                                                class="form-control"value="{{ $order->invoice_no }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="order_date">Fecha</label>
+                                            <input readonly type="text" id="order_date"
+                                                class="form-control"value="{{ $order->order_date }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="slug">Nombre del cliente</label>
+                                            <input readonly type="text" id="order_date" class="form-control"
+                                                value="{{ $order->customer->name }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="slug">Telefono del cliente</label>
+                                            <input readonly type="number" id="order_date" class="form-control"
+                                                value="{{ $order->customer->phone }}">
                                         </div>
                                     </div>
 
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            <label for="purchase_no">Nombre de la tienda</label>
-                                            <input readonly type="text" id="purchase_no" class="form-control"
-                                                name="purchase_no" value="{{ $supplier->shopname }}">
-                                        </div>
-                                    </div>
+                                    <table id="productsTable" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Producto</th>
+                                                <th>Cantidad</th>
+                                                <th>Precio</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($products as $product)
+                                                <tr>
+                                                    <td>
+                                                        {{ $product->name }}
+                                                    </td>
 
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            <label for="supplier">Tienda del Proveedor</label>
-                                            <input readonly type="text" id="supplier" class="form-control"
-                                                name="supplier" value="{{ $supplier->phone }}">
-                                        </div>
-                                    </div>
+                                                    <!-- Columna Cantidad -->
+                                                    <td>
+                                                        {{ $product->quantity }}
+                                                    </td>
+
+                                                    <!-- Columna Precio -->
+                                                    <td>
+                                                        {{ $product->selling_price }}
+                                                    </td>
+
+                                                    <!-- Columna Total -->
+                                                    <td>
+                                                        {{ $product->total }}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            <label for="supplier">Fecha de la compra</label>
-                                            <input readonly type="text" id="supplier" class="form-control"
-                                                name="supplier" value="{{ $purchase->date }}">
-                                        </div>
+                                @if ($errors->any())
+                                    <div>
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
                                     </div>
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            <label for="supplier">Numero de la compra</label>
-                                            <input readonly type="text" id="supplier" class="form-control"
-                                                name="supplier" value="{{ $purchase->purchase_no }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            <label for="supplier">Total de la compra</label>
-                                            <input readonly type="text" id="supplier" class="form-control"
-                                                name="supplier" value="{{ $purchase->total_amount }}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            <label for="supplier">Registro creado por:</label>
-                                            <input readonly type="text" id="supplier" class="form-control"
-                                                name="supplier" value="{{ $purchase->created_by }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            <label for="supplier">Registro actualizado por:</label>
-                                            <input readonly type="text" id="supplier" class="form-control"
-                                                name="supplier"
-                                                value="{{ $purchase->updatedBy ? $purchase->updatedBy : 'Sin actualizar' }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            <label for="supplier">Direcccion del proovedor</label>
-                                            <input readonly type="text" id="supplier" class="form-control"
-                                                name="supplier" value="{{ $supplier->address }}">
-                                        </div>
-                                    </div>
-                                </div>
-
-
+                                @endif
                             </div>
                         </div>
+                    </div>
 
+                    <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Productos Agregados</h4>
+                            <h4 class="card-title">Total/h4>
                         </div>
-                        <div class="card-content">
-                            <div class="card-body">
-                                <table id="productsTable" class="table table-bordered" id="table1">
+                        <div class="card-body">
+                            <div class="table-responsive" id="totalTable" style="max-width: 20%;">
+                                <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Producto</th>
-                                            <th>Cantidad</th>
-                                            <th>Precio</th>
+                                            <th>Subtotal</th>
+                                            <th>
+                                                {{ $product->sub_total }}
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>IVA</th>
+                                            <th>
+                                                {{ $product->iva }}
+                                            </th>
+                                        </tr>
+                                        <tr>
                                             <th>Total</th>
+                                            <th>
+                                                {{ $product->total }}
+                                            </th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        @foreach ($purchaseDetails as $purchaseDetail)
-                                            <tr>
-                                                <td>
-                                                    <input readonly type="text" class="form-control"
-                                                        value="{{ $purchaseDetail->product->name }}">
-                                                </td>
-                                                <td>
-                                                    <input readonly type="text" class="form-control"
-                                                        value="{{ $purchaseDetail->quantity }}">
-                                                </td>
-                                                <td>
-                                                    <input readonly type="text" class="form-control"
-                                                        value="{{ $purchaseDetail->unitcost }}">
-                                                </td>
-                                                <td>
-                                                    <input readonly type="text" class="form-control"
-                                                        value="{{ $purchaseDetail->total }}">
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-    </div>
+        </section>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        let products = [];
+        let subtotal = 0;
+        let iva = 0;
+
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('productos-actualizado', (event) => {
+                products = event[0].products;
+                subtotal = event[0].subtotal;
+                iva = event[0].iva;
+                total = event[0].total;
+            });
+        });
+
+        function createHiddenInput(form, name, value) {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = name;
+            input.value = value;
+            form.appendChild(input);
+        }
+
+        document.getElementById('productForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formulario = document.getElementById('productForm');
+
+            createHiddenInput(formulario, 'total_products', products.length);
+            createHiddenInput(formulario, `sub_total`, subtotal);
+            createHiddenInput(formulario, `total`, total);
+            createHiddenInput(formulario, `iva`, iva);
+
+            products.forEach((product, index) => {
+                createHiddenInput(formulario, `products[${index}][product_id]`, product.product_id);
+                createHiddenInput(formulario, `products[${index}][quantity]`, product.quantity);
+                createHiddenInput(formulario, `products[${index}][selling_price]`, product.selling_price);
+                createHiddenInput(formulario, `products[${index}][total]`, product.total);
+            });
+
+            this.submit();
+        });
+    </script>
+@endpush
