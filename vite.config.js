@@ -19,6 +19,9 @@ export default defineConfig({
 
                 "resources/js/simple-datatable.js",
                 "resources/js/table.js",
+
+                "resources/js/apexcharts.min.js",
+                "resources/js/dashboard.js",
             ],
             refresh: true,
         }),

@@ -19604,3 +19604,10 @@ a {
 [data-bs-theme="dark"] #logo {
     content: url("/public/images/logo-large-dark.png");
 }
+
+/* Estilos de iconos para modo oscuro y claro */
+.icono-personalizado {
+    display: inline;
+    height: auto;
+    width: auto;
+}

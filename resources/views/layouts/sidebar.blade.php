@@ -75,6 +75,26 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item has-sub {{ Route::is('suppliers.*', 'customers.*') ? 'active' : '' }}">
+                    <a href="#" class='sidebar-link'>
+                        <span>Tipos de Usuarios</span>
+                    </a>
+                    <ul class="submenu">
+                        <li class="submenu-item {{ Route::is('customers.*') ? 'active' : '' }}">
+                            <a href="{{ route('customers.index') }}" class="submenu-link">
+                                <i class="bi bi-people-fill"></i>
+                                Clientes
+                            </a>
+                        </li>
+                        <li class="submenu-item {{ Route::is('suppliers.*') ? 'active' : '' }}">
+                            <a href="{{ route('suppliers.index') }}" class="submenu-link">
+                                <i class="bi bi-truck"></i>
+                                Proovedores
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="sidebar-item has-sub {{ Route::is('categories.*', 'units.*', 'user.*') ? 'active' : '' }}">
                     <a href="#" class='sidebar-link'>
                         <span>Opciones</span>
@@ -101,33 +121,6 @@
                     </ul>
                 </li>
 
-                <li class="sidebar-item has-sub {{ Route::is('suppliers.*', 'customers.*') ? 'active' : '' }}">
-                    <a href="#" class='sidebar-link'>
-                        <span>Paginas</span>
-                    </a>
-                    <ul class="submenu">
-                        <li class="submenu-item {{ Route::is('suppliers.*') ? 'active' : '' }}">
-                            <a href="{{ route('suppliers.index') }}" class="submenu-link">
-                                <i class="bi bi-truck"></i>
-                                Proovedores
-                            </a>
-                        </li>
-                        <li class="submenu-item {{ Route::is('customers.*') ? 'active' : '' }}">
-                            <a href="{{ route('customers.index') }}" class="submenu-link">
-                                <i class="bi bi-people-fill"></i>
-                                Clientes
-                            </a>
-                        </li>
-                        {{-- <li class="submenu-item {{ Route::is('user.*') ? 'active' : '' }}">
-                            <a href="{{ route('user.index') }}" class="submenu-link">
-                                <i class="bi bi-people-fill me-2"></i>
-                                Usuarios
-                            </a>
-                        </li> --}}
-                    </ul>
-                </li>
-
-                <li class="sidebar-title">Pages</li>
 
             </ul>
         </div>
