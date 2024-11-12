@@ -7,8 +7,8 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
 
-    {{-- <title>Manejo de Inventario</title> --}}
-    <title>@yield('title', 'Dashboard')</title>
+    <title>Manejo de Inventario</title>
+    {{-- <title>@yield('title', 'Dashboard')</title> --}}
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
