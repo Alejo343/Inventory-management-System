@@ -1,3 +1,4 @@
+import ApexCharts from "apexcharts";
 let optionsVisitorsProfile = {
     series: [70, 30, 50],
     labels: ["Mayorista", "Minorista", "Coorporativo"],
