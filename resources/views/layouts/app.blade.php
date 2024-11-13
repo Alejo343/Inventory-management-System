@@ -52,6 +52,7 @@
     </div>
 
     @vite('resources/js/dark.js')
+    @vite('resources/js/sidebar.js')
 
     @stack('scripts')
 </body>

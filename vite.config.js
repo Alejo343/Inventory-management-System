@@ -15,7 +15,7 @@ export default defineConfig({
                 "resources/css/app-dark.css",
                 "resources/css/iconly.css",
 
-                // "resources/js/sidebar.js",
+                "resources/js/sidebar.js",
 
                 // "resources/js/simple-datatable.js",
                 // "resources/js/table.js",
