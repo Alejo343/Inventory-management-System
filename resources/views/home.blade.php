@@ -4,15 +4,61 @@
 
 @section('content')
     <div id="main">
-        <header class="mb-3">
-            <a href="#" class="burger-btn d-block d-xl-none">
-                <i class="bi bi-justify fs-3"></i>
-            </a>
+        <header>
+            <nav class="navbar navbar-expand navbar-light navbar-top">
+                <div class="container-fluid">
+                    <a href="#" class="burger-btn d-block">
+                        <i class="bi bi-justify fs-3"></i>
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="dropdown">
+                            <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="user-menu d-flex">
+                                    <div class="user-name text-end me-3">
+                                        <h6 class="mb-0 text-gray-600">{{ Auth::user()->name }}</h6>
+                                        <p class="mb-0 text-sm text-gray-600">Administrator</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton"
+                                style="min-width: 11rem;">
+                                <li>
+                                    <h6 class="dropdown-header">Hola, {{ Auth::user()->name }}!</h6>
+                                </li>
+                                <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-person me-2"></i>
+                                        Mi cuenta
+                                    </a></li>
+                                <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-gear me-2"></i>
+                                        Configuracion
+                                    </a></li>
+                                <hr class="dropdown-divider">
+                                </li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <li>
+                                        <button type="submit" class="dropdown-item"
+                                            style="background: none; border: none;">
+                                            <i class="button icon-mid bi bi-box-arrow-left me-2"></i> Cerrar sesión
+                                        </button>
+                                    </li>
+                                </form>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </header>
 
-        <div class="page-heading">
+        <div class="page-heading" class='layout-navbar navbar-fixed'>
             <h3>Estadisticas</h3>
         </div>
+
         <div class="page-content">
             <section class="row">
                 <div class="col-12 col-lg-9">
@@ -90,18 +136,18 @@
                 {{-- INFORMACION ADICIONAL --}}
                 <div class="col-12 col-lg-3">
                     {{-- usuario logeado --}}
-                    {{-- <div class="card">
+                    <div class="card">
                         <div class="card-body py-4 px-4">
                             <div class="d-flex align-items-center">
                                 <div class="avatar avatar-xl">
                                 </div>
                                 <div class="ms-3 name">
-                                    <h5 class="font-bold">John Duck</h5>
-                                    <h6 class="text-muted mb-0">@johnducky</h6>
+                                    <h5 class="font-bold">{{ Auth::user()->name }}</h5>
+                                    <h6 class="text-muted mb-0">{{ Auth::user()->username }}</h6>
                                 </div>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                     {{-- Reposicion de productos --}}
                     <div class="card border-warning bg-warning text-dark">
                         <div class="card-header bg-warning text-dark">

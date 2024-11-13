@@ -21,16 +21,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');;
 
-Route::resource('products', ProductController::class);
-Route::resource('categories', CategoryController::class);
-Route::resource('units', UnitController::class);
-Route::resource('user', UserController::class);
-Route::put('user/{user}/updatePassword', [UserController::class, 'updatePassword'])->name('user.updatePassword');
-Route::resource('suppliers', SupplierController::class);
-Route::resource('customers', CustomerController::class);
-Route::resource('purchases', PurchaseController::class);
-Route::resource('orders', OrderController::class);
+// Route::get('/login', function () {
+//     return view('auth.login');
+// })->name('login');
+// Route::get('/register', function () {
+//     return view('auth.register');
+// })->name('register');
+
+Route::middleware(['auth'])->group(function () {
+    Route::view('/', 'home')->name('home');
+    Route::resource('categories', CategoryController::class);
+    Route::resource('units', UnitController::class);
+    Route::resource('user', UserController::class);
+    Route::put('user/{user}/updatePassword', [UserController::class, 'updatePassword'])->name('user.updatePassword');
+    Route::resource('suppliers', SupplierController::class);
+    Route::resource('customers', CustomerController::class);
+    Route::resource('purchases', PurchaseController::class);
+    Route::resource('orders', OrderController::class);
+    Route::resource('products', ProductController::class);
+});
