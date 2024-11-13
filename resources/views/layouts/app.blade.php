@@ -38,10 +38,16 @@
     <div id="app">
         @include('layouts.sidebar')
 
-        @yield('content')
+        <div id="main" class='layout-navbar navbar-fixed'>
+            @include('layouts.header')
 
+            <div id="main-content">
+                @yield('content')
+            </div>
 
-        @include('layouts.footer')
+            @include('layouts.footer')
+        </div>
+
         @livewireScripts
     </div>
 
