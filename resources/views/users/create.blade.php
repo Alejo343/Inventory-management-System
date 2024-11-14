@@ -15,7 +15,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form" action="{{ route('user.store') }}" method="POST">
+                            <form class="form" action="{{ route('register') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6 col-12">
@@ -23,6 +23,22 @@
                                             <label for="name">Nombre</label>
                                             <input type="text" id="name" class="form-control" placeholder="Nombre"
                                                 name="name" value="{{ old('name') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="role">Rol</label>
+                                            <fieldset class="form-group">
+                                                <select class="form-select" id="role" name="role" required>
+                                                    <option value="">Seleccionar un tipo</option>
+                                                    @foreach ($roles as $role)
+                                                        <option value="{{ $role->value }}"
+                                                            {{ old('role') == $role->value ? 'selected' : '' }}>
+                                                            {{ $role->label() }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </fieldset>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">

@@ -29,6 +29,22 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
+                                            <label for="role">Rol</label>
+                                            <fieldset class="form-group">
+                                                <select class="form-select" id="role" name="role" required>
+                                                    <option value="">Seleccionar un Rol</option>
+                                                    @foreach ($roles as $role)
+                                                        <option value="{{ $role->value }}"
+                                                            {{ old('role', $user->role->value ?? '') == $role->value ? 'selected' : '' }}>
+                                                            {{ $role->label() }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
                                             <label for="username">username</label>
                                             <input required type="text" id="username" class="form-control"
                                                 name="username" value="{{ old('username', $user->username) }}"

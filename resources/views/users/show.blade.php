@@ -27,6 +27,10 @@
                                             <td class="fs-6">{{ $user->username }}</td>
                                         </tr>
                                         <tr>
+                                            <td class="fw-bold fs-6">Rol</td>
+                                            <td class="fs-6">{{ $user->role->label() }}</td>
+                                        </tr>
+                                        <tr>
                                             <td class="fw-bold fs-6">Email</td>
                                             <td class="fs-6">{{ $user->email }}</td>
                                         </tr>

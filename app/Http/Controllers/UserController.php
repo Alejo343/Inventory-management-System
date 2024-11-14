@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserType;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
@@ -13,12 +14,14 @@ class UserController extends Controller
     public function index()
     {
         $users = User::All();
-        return view('users.index', compact('users'));
+        $roles = UserType::cases();
+        return view('users.index', compact('users', 'roles'));
     }
 
     public function create()
     {
-        return view('users.create');
+        $roles = UserType::cases();
+        return view('users.create', compact('roles'));
     }
 
     public function store(StoreUserRequest $request)
@@ -35,7 +38,8 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        $roles = UserType::cases();
+        return view('users.edit', compact('user', 'roles'));
     }
 
     public function update(UpdateUserRequest $request, User $user)

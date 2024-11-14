@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
                     <h3>Usuarios</h3>
-                    <p class="text-subtitle text-muted">Lista de todos los usuarios</p>
+                    <p class="text-subtitle text-muted">Lista de todos los usuarios con acceso a la plataforma</p>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -37,6 +37,8 @@
                         <thead>
                             <tr>
                                 <th class="text-start">Nombre</th>
+                                <th class="text-start">Username</th>
+                                <th class="text-center align-middle">Rol</th>
                                 <th class="text-center align-middle">Correo</th>
                                 <th class="text-center align-middle">Acciones</th>
                             </tr>
@@ -46,6 +48,12 @@
                                 <tr>
                                     <td class="py-3 text-start">
                                         {{ $user->name }}
+                                    </td>
+                                    <td class="py-3 text-start">
+                                        {{ $user->username }}
+                                    </td>
+                                    <td class="py-3 text-start">
+                                        {{ $user->role->label() }}
                                     </td>
                                     <td class="py-3 align-middle text-center">
                                         {{ $user->email }}
