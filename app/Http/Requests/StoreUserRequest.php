@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\UserType;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreUserRequest extends FormRequest
 {
@@ -25,6 +27,7 @@ class StoreUserRequest extends FormRequest
             'name' => 'required|max:50',
             'email' => 'required|email|max:50|unique:users,email',
             'username' => 'required|min:4|max:25|alpha_dash:ascii|unique:users,username',
+            'role' => [Rule::enum(UserType::class)],
             'password' => 'required_with:password_confirmation|min:6',
             'password_confirmation' => 'same:password|min:6',
         ];

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\UserType;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -30,7 +31,7 @@ class UpdateUserRequest extends FormRequest
                 'email',
                 'max:50',
             ],
-            'username' => 'required|min:4|max:25|alpha_dash:ascii|unique:users,username',
+            'role' => [Rule::enum(UserType::class)],
             'username' => [
                 'required',
                 'min:4',

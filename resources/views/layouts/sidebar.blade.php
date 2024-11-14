@@ -61,67 +61,75 @@
                         <span>Productos</span>
                     </a>
                 </li>
+                @can('is-invt-manager')
+                    <li class="sidebar-item {{ Route::is('purchases.*') ? 'active' : '' }}">
+                        <a href="{{ route('purchases.index') }}" class='sidebar-link'>
+                            <i class="bi bi-building-fill-down"></i>
+                            <span>Compras</span>
+                        </a>
+                    </li>
+                @endcan
 
-                <li class="sidebar-item {{ Route::is('purchases.*') ? 'active' : '' }}">
-                    <a href="{{ route('purchases.index') }}" class='sidebar-link'>
-                        <i class="bi bi-building-fill-down"></i>
-                        <span>Compras</span>
-                    </a>
-                </li>
-                <li class="sidebar-item {{ Route::is('orders.*') ? 'active' : '' }}">
-                    <a href="{{ route('orders.index') }}" class='sidebar-link'>
-                        <i class="bi bi-cart-fill"></i>
-                        <span>Ventas</span>
-                    </a>
-                </li>
+                @can('is-sales-user')
+                    <li class="sidebar-item {{ Route::is('orders.*') ? 'active' : '' }}">
+                        <a href="{{ route('orders.index') }}" class='sidebar-link'>
+                            <i class="bi bi-cart-fill"></i>
+                            <span>Ventas</span>
+                        </a>
+                    </li>
+                @endcan
 
                 <li class="sidebar-item has-sub {{ Route::is('suppliers.*', 'customers.*') ? 'active' : '' }}">
                     <a href="#" class='sidebar-link'>
                         <span>Tipos de Usuarios</span>
                     </a>
                     <ul class="submenu">
-                        <li class="submenu-item {{ Route::is('customers.*') ? 'active' : '' }}">
-                            <a href="{{ route('customers.index') }}" class="submenu-link">
-                                <i class="bi bi-people-fill"></i>
-                                Clientes
-                            </a>
-                        </li>
-                        <li class="submenu-item {{ Route::is('suppliers.*') ? 'active' : '' }}">
-                            <a href="{{ route('suppliers.index') }}" class="submenu-link">
-                                <i class="bi bi-truck"></i>
-                                Proovedores
-                            </a>
-                        </li>
+                        @can('is-sales-user')
+                            <li class="submenu-item {{ Route::is('customers.*') ? 'active' : '' }}">
+                                <a href="{{ route('customers.index') }}" class="submenu-link">
+                                    <i class="bi bi-people-fill"></i>
+                                    Clientes
+                                </a>
+                            </li>
+                        @endcan
+                        @can('is-invt-manager')
+                            <li class="submenu-item {{ Route::is('suppliers.*') ? 'active' : '' }}">
+                                <a href="{{ route('suppliers.index') }}" class="submenu-link">
+                                    <i class="bi bi-truck"></i>
+                                    Proovedores
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
 
-                <li class="sidebar-item has-sub {{ Route::is('categories.*', 'units.*', 'user.*') ? 'active' : '' }}">
-                    <a href="#" class='sidebar-link'>
-                        <span>Opciones</span>
-                    </a>
-                    <ul class="submenu">
-                        <li class="submenu-item {{ Route::is('categories.*') ? 'active' : '' }}">
-                            <a href="{{ route('categories.index') }}" class="submenu-link">
-                                <i class="bi bi-grid-3x2-gap-fill me-2"></i>
-                                Categorias
-                            </a>
-                        </li>
-                        <li class="submenu-item {{ Route::is('units.*') ? 'active' : '' }}">
-                            <a href="{{ route('units.index') }}" class="submenu-link">
-                                <i class="bi bi-rulers me-2"></i>
-                                Tipos unidades
-                            </a>
-                        </li>
-                        <li class="submenu-item {{ Route::is('user.*') ? 'active' : '' }}">
-                            <a href="{{ route('user.index') }}" class="submenu-link">
-                                <i class="bi bi-person-fill-gear"></i>
-                                Usuarios
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-
+                @can('is-admin')
+                    <li class="sidebar-item has-sub {{ Route::is('categories.*', 'units.*', 'user.*') ? 'active' : '' }}">
+                        <a href="#" class='sidebar-link'>
+                            <span>Opciones</span>
+                        </a>
+                        <ul class="submenu">
+                            <li class="submenu-item {{ Route::is('categories.*') ? 'active' : '' }}">
+                                <a href="{{ route('categories.index') }}" class="submenu-link">
+                                    <i class="bi bi-grid-3x2-gap-fill me-2"></i>
+                                    Categorias
+                                </a>
+                            </li>
+                            <li class="submenu-item {{ Route::is('units.*') ? 'active' : '' }}">
+                                <a href="{{ route('units.index') }}" class="submenu-link">
+                                    <i class="bi bi-rulers me-2"></i>
+                                    Tipos unidades
+                                </a>
+                            </li>
+                            <li class="submenu-item {{ Route::is('user.*') ? 'active' : '' }}">
+                                <a href="{{ route('user.index') }}" class="submenu-link">
+                                    <i class="bi bi-person-fill-gear"></i>
+                                    Usuarios
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
             </ul>
         </div>
     </div>

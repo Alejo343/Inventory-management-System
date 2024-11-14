@@ -27,7 +27,13 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         try {
-            User::create($request->all());
+            User::create([
+                'name' => $request->name,
+                'username' => $request->name,
+                'role' => $request->role,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
             return redirect()->route('user.index')->with('success', 'Usuario creado con exito');
         } catch (\Exception $e) {
             $errorMessage = 'A ocurrido un error al crear el usuario: ' . $e->getMessage();

@@ -15,7 +15,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form" action="{{ route('register') }}" method="POST">
+                            <form class="form" action="{{ route('user.store') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6 col-12">
