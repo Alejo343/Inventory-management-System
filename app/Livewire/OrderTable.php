@@ -17,7 +17,6 @@ class OrderTable extends Component
     public $totalHidden = 0;
 
 
-
     public function mount()
     {
         // Ejemplo de productos. Puedes cargar estos datos de la base de datos.
@@ -49,14 +48,11 @@ class OrderTable extends Component
         $product = collect($this->products)->firstWhere('id', $productId);
 
         if ($product) {
-            // Asigna el precio de venta
             $this->rows[$index]['selling_price'] = $product['selling_price'];
-
-            // // Verifica la cantidad máxima
-            // if ($this->rows[$index]['quantity'] > $product['quantity']) {
-            //     $this->rows[$index]['quantity'] = $product['quantity'];
-            // }
         }
+
+        // Recalcular el total
+        $this->rows[$index]['total'] = $this->rows[$index]['selling_price'] * $this->rows[$index]['quantity'];
 
         $this->updateTotal();
     }
