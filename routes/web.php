@@ -30,17 +30,6 @@ use Illuminate\Support\Facades\Route;
 // })->name('register');
 
 Route::middleware(['auth'])->group(function () {
-    // Solo los administradores y gerentes de inventario
-    Route::middleware(['can:is-admin-or-invt-manager'])->group(function () {
-        Route::resource('products', ProductController::class)->except(['index', 'show']);
-    });
-
-    // Usuarios de ventas pueden ver la lista y detalles de productos
-    Route::middleware(['can:is-sales-user'])->group(function () {
-        Route::get('products', [ProductController::class, 'index'])->name('products.index');
-        Route::get('products/{product}', [ProductController::class, 'show'])->name('products.show');
-    });
-
     // Solo los administradores
     Route::middleware(['can:is-admin'])->group(function () {
         Route::resource('user', UserController::class);
@@ -50,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::view('/', 'home')->name('home');
+    Route::resource('products', ProductController::class);
 
     // Solo los gerentes de inventario
     Route::middleware(['can:is-invt-manager'])->group(function () {

@@ -41,9 +41,5 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('is-sales-user', function ($user) {
             return $user->role->value == 2;
         });
-
-        Gate::define('is-admin-or-invt-manager', function ($user) {
-            return $user->role->value === 0 || $user->role->value === 1;
-        });
     }
 }

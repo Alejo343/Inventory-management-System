@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Gate;
 use App\Enums\TaxType;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
@@ -11,6 +12,11 @@ use App\Models\Unit;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:is-invt-manager')->except(['index', 'show']);
+        $this->middleware('can:is-invt-manager,is-sales-user')->only(['index', 'show']);
+    }
     /**
      * Display a listing of the resource.
      */
