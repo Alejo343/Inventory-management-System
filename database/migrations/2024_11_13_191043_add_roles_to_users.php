@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->tinyInteger('role'); // Agrega una columna 'role' que puede ser NULL
+            $table->tinyInteger('role')->default(0); // Agrega una columna 'role' que puede ser NULL
         });
     }
 
