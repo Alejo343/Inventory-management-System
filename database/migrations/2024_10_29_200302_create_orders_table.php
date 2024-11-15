@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('order_date');
             $table->tinyInteger('order_status')->default(OrderStatus::PENDING->value)->comment('0 - Pending / 1 - Complete / 2 - canceled');
             $table->integer('total_products');
-            $table->integer('sub_total')->unsigned();
+            $table->bigInteger('sub_total');
             $table->integer('iva');
-            $table->integer('total')->unsigned();
+            $table->bigInteger('total');
             $table->string('invoice_no');
             // $table->string('payment_type');
             // $table->integer('pay');

@@ -24,6 +24,14 @@
         "APP_URL": "inventory-management-system-taupe-ten.vercel.app",
         "APP_KEY": "base64:IcjkwYbGz5Grbl9DmHRTzPzBuvOdNUPAG7pHPvjdg7k=",
 
+        "DB_CONNECTION": "pgsql",
+        "DATABASE_URL": "postgres://postgres.zolexohewxyyfwhbcqvv:lYj4Pjn2ZhjBLOzQ@aws-0-us-east-1.pooler.supabase.com:6543/postgres?sslmode=require&supa=base-pooler.x",
+        "DB_HOST": "aws-0-us-east-1.pooler.supabase.com",
+        "DB_PORT": "6543",
+        "DB_DATABASE": "postgres",
+        "DB_USERNAME": "postgres",
+        "DB_PASSWORD": "lYj4Pjn2ZhjBLOzQ",
+
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",

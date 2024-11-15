@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\Product::class)->constrained()->cascadeOnDelete();
             $table->integer('quantity');
             $table->integer('unitcost');
-            $table->integer('total')->unsigned();
+            $table->bigInteger('total');
             $table->timestamps();
         });
     }
