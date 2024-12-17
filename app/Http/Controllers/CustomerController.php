@@ -32,12 +32,10 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
-        // dd($request->all());
         try {
             Customer::create($request->all());
             return redirect()->route('customers.index')->with('success', 'Cliente creado correctamente.');
         } catch (\Exception $e) {
-            dd('mensaje: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Error al crear prooverdor' . $e->getMessage());
         }
     }
@@ -65,7 +63,6 @@ class CustomerController extends Controller
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        dd($request->all());
         try {
             $customer->update($request->all());
             return redirect()->route('customers.index')

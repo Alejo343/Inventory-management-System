@@ -50,7 +50,7 @@
                                         <tr>
                                             <th>Producto</th>
                                             <th>Cantidad</th>
-                                            <th>Precio</th>
+                                            <th>Precio unitario</th>
                                             <th>Total</th>
                                         </tr>
                                     </thead>
@@ -58,7 +58,7 @@
                                         @foreach ($products as $product)
                                             <tr>
                                                 <td>
-                                                    {{ $product->name }}
+                                                    {{ $product->product->name }}
                                                 </td>
 
                                                 <!-- Columna Cantidad -->
@@ -68,7 +68,7 @@
 
                                                 <!-- Columna Precio -->
                                                 <td>
-                                                    {{ $product->selling_price }}
+                                                    {{ $product->unitcost }}
                                                 </td>
 
                                                 <!-- Columna Total -->

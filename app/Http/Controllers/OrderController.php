@@ -136,8 +136,6 @@ class OrderController extends Controller
         $status = OrderStatus::cases();
         $products = OrderDetail::where('order_id', $order->id)->get();
 
-        dd($products);
-
         return view('orders.show', compact('order', 'customer', 'status', 'products'));
     }
 
