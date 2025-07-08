@@ -92,7 +92,8 @@
                         </a>
                     </div>
                     <h1 class="auth-title">Inicia sesion</h1>
-                    <p class="auth-subtitle mb-5">Para fines demostrativos inicie sesion con estos datos</p>
+                    <p class="auth-subtitle mb-5">Para fines demostrativos inicie sesion con este usuadio Administrador.
+                    </p>
 
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
